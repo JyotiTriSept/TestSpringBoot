@@ -6,15 +6,15 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: springboot-app
+      app: testspringboot
   template:
     metadata:
       labels:
-        app: springboot-app
+        app: testspringboot
     spec:
       containers:
       - name: my-springboot-app
-        image: tcahotelcontainer.azurecr.io/springboot-app:#{Build.BuildId}#
+        image: tcahotelcontainer.azurecr.io/jyotitrisept/testspringboot:#{Build.BuildId}#
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
@@ -24,9 +24,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: springboot-app
-    k8s-app: springboot-app
-  name: springboot-app
+    app: testspringboot
+    k8s-app: testspringboot
+  name: testspringboot
 spec:
   ports:
   - name: http
@@ -35,4 +35,4 @@ spec:
     targetPort: 8085
   type: LoadBalancer
   selector:
-    app: springboot-app
+    app: testspringboot
